@@ -26,6 +26,7 @@ public class InputManager : MonoBehaviour
         else if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             ToggleCraftingScreen(!_craftingScreen.activeSelf && !_toolsScreen.activeSelf);
+            ToggleInventory(_craftingScreen.activeSelf || _toolsScreen.activeSelf);
         }
 
         Pause(_inventoryScreen.activeSelf || _craftingScreen.activeSelf || _toolsScreen.activeSelf);

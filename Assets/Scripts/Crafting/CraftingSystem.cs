@@ -1,36 +1,39 @@
-using TMPro;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class CraftingSystem : MonoBehaviour
 {
-    [SerializeField] GameObject _craftingScreen;
-    [SerializeField] GameObject _toolsScreen;
-    [SerializeField] Button _toolsButton;
-    [SerializeField] Button _craftAxeButton;
-    [SerializeField] TMP_Text _craftAxeReq1;
-    [SerializeField] TMP_Text _craftAxeReq2;
     public static CraftingSystem Instance { get; private set; }
+
+    public CraftingRecipe[] Recipes;
+
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         Instance = this;
     }
 
-    private void Start()
+    public void Craft(CraftingRecipe recipe)
     {
-        _toolsButton.onClick.AddListener(OpenToolsScreen);
+        var inventory = InventorySystem.Instance;
+        if (CanCraft(recipe))
+        {
+            foreach (var ingredient in recipe.Ingredients)
+            {
+                inventory.RemoveItem(ingredient.Item, ingredient.Amount);
+            }
+            inventory.TryAddItem(recipe.Result);
+        }
     }
 
-    void OpenToolsScreen()
+    bool CanCraft(CraftingRecipe recipe)
     {
-        _craftingScreen.SetActive(false);
-        _toolsScreen.SetActive(true);
+        var inventory = InventorySystem.Instance;
+        foreach (var ingredient in recipe.Ingredients)
+        {
+            if (inventory.HasItem(ingredient.Item, ingredient.Amount) == false) {
+                return false;
+            }
+        }
+        return true;
     }
-
 }

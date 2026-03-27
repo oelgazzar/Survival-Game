@@ -1,47 +1,64 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.InputSystem;
 using System;
 
 public class InventorySystem : MonoBehaviour
 {
-    [SerializeField] GameObject _inventoryScreen;
-    [SerializeField] InventoryItem _inventoryItemPrefab;
+    /// <summary>
+    /// for testing purposes
+    [SerializeField] InventoryItemData _debugStoneItemData;
+    [SerializeField] InventoryItemData _debugStringItemData;
+    /// </summary>
+    [SerializeField] int _capacity = 21;
 
     public static InventorySystem Instance;
+    public static event Action<List<InventorySlot>> InventoryChanged;
 
-    readonly List<ItemSlot> _slots = new();
-    readonly List<InventoryItemData> _items = new();
+    readonly List<InventorySlot> _slots = new();
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
     private void Start()
     {
-        PopulateSlotList();
+        InitSlotList();
     }
 
-    private void PopulateSlotList()
+    void InitSlotList()
     {
-        foreach (Transform child in _inventoryScreen.transform.GetChild(1))
+        for (var i = 0; i < _capacity; i++)
         {
-            if (child.TryGetComponent<ItemSlot>(out var slot))
-            {
-                _slots.Add(slot);
-            }
+            _slots.Add(new InventorySlot());
         }
     }
 
-    ItemSlot FindNextEmptySlot()
+    InventorySlot FindNextEmptySlot()
     {
         foreach (var slot in _slots)
         {
-            if (slot.transform.childCount == 0)
+            if (slot.Item == null)
                 return slot;
         }
         return null;
+    }
+
+    public int GetItemCount(InventoryItemData item)
+    {
+        var count = 0;
+
+        foreach (var slot in _slots)
+        {
+            if (slot.Item == item)
+            {
+                count += slot.Amount;
+            }
+        }
+        return count;
     }
 
     public bool TryAddItem(InventoryItemData inventoryItemData)
@@ -59,11 +76,83 @@ public class InventorySystem : MonoBehaviour
             return false;
         }
 
-        _items.Add(inventoryItemData);
+        slot.Item = inventoryItemData;
+        slot.Amount = 1;
 
-        var item = Instantiate(_inventoryItemPrefab, slot.transform);
-        item.SetData(inventoryItemData);
+        InventoryChanged?.Invoke(_slots);
 
         return true;
+    }
+
+    public bool HasItem(InventoryItemData item, int amount)
+    {
+        var available = 0;
+        foreach (var slot in _slots)
+        {
+            if (slot.Item == item)
+            {
+                available += slot.Amount;
+
+                if (available >= amount)
+                    break;
+            }
+        }
+
+        return available >= amount;
+    }
+
+    public void RemoveItem(InventoryItemData item, int amount)
+    {
+        if (amount < 0)
+            return;
+
+        if (HasItem(item, amount) == false)
+        {
+            Debug.Log("This item not available in this amount");
+            return;
+        }
+
+        var remaining = amount;
+
+        foreach (var slot in _slots)
+        {
+            if (slot.Item == item)
+            {
+                var removed = Mathf.Min(remaining, slot.Amount);
+                slot.Amount -= removed;
+                remaining -= removed;
+
+                if (slot.Amount == 0)
+                {
+                    slot.Item = null;
+                }
+
+                if (remaining == 0)
+                    break;
+            }
+        }
+
+        InventoryChanged?.Invoke(_slots);
+    }
+
+    // Debug methods
+    [ContextMenu("Test Remove 0 stones")]
+    void RemoveZeroStones()
+    {
+        RemoveItem(_debugStoneItemData, 0);
+    }
+
+    [ContextMenu("Test Remove 5 stones")]
+    void RemoveFiveStones()
+    {
+        RemoveItem(_debugStoneItemData, 5);
+    }
+
+    // Drag and drop functionality
+    public void MoveItem(int fromIndex, int toIndex)
+    {
+        (_slots[fromIndex], _slots[toIndex]) = (_slots[toIndex], _slots[fromIndex]);
+
+        InventoryChanged?.Invoke(_slots);
     }
 }

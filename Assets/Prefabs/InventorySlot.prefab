@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4117876825447757203}
   - component: {fileID: 799580660509052525}
   m_Layer: 5
-  m_Name: Slot
+  m_Name: InventorySlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,3 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33b6284538a776b48ab07e13446fd5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemSlot
+  _inventoryItemUIPrefab: {fileID: 4805241827302130756, guid: 3f59ea41d6b8fcb469343f0aaf38b17d, type: 3}
+  Index: 0
