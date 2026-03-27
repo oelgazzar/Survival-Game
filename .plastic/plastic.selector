@@ -1,0 +1,4 @@
+repository "Survival Game/Survival Game@11270385297727@cloud"
+  path "/"
+    br "/main"
+    co "/main"
