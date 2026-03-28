@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314569596b4f3124ab617daaf18bb040, type: 3}
+  m_Name: HydrationStatus
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusData
+  Name: Hydration
+  Icon: {fileID: 21300000, guid: 644f620af35b43d4692c26a8b2d65152, type: 3}
+  Color: {fileID: 21300000, guid: cea1d2d29806e0e40af1e31ea7d436d9, type: 3}
+  MaxValue: 1000
