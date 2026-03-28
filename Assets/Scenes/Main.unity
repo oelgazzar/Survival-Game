@@ -9832,7 +9832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7997291044979463264, guid: e7db5ab4f97c14c4d9588a3adda1c8fc, type: 3}
       propertyPath: m_Name
-      value: Starvation  Bar
+      value: Feeding  Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

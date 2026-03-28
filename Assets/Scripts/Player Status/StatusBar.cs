@@ -20,7 +20,7 @@ public class StatusBar : MonoBehaviour
     {
         value = Mathf.Clamp(value, 0, _statusData.MaxValue);
         _fillImage.fillAmount = value / _statusData.MaxValue;
-        _percentageText.text = $"{value} / {_statusData.MaxValue}";
+        _percentageText.text = $"{value:F0} / {_statusData.MaxValue}";
     }
 
     void OnStatusChanged(PlayerStatus playerStatus)

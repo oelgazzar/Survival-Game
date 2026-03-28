@@ -17,23 +17,70 @@ public class PlayerStatusManager : MonoBehaviour
     {
         Instance = this;
 
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         foreach (var statusData in _allStatusData)
         {
+            foreach (var influence in statusData.InfluenceEffects)
+            {
+                influence.Thresholds.Sort(
+                    (a, b) => b.Cutoff.CompareTo(a.Cutoff)
+                );
+            }
             _playerStatusMap[statusData] = new PlayerStatus(statusData);
         }
     }
 
-    public void UpdatePlayerStatus(PlayerStatusData statusData, float value)
+    public void ModifyPlayerStatus(PlayerStatusData statusData, float value)
     {
         var playerStatus = _playerStatusMap[statusData];
-        playerStatus.CurrentValue = value;
+        playerStatus.UpdateCurrentValue(playerStatus.CurrentValue + value);
         StatusChanged?.Invoke(playerStatus);
+    }
+
+    private void Update()
+    {
+        foreach (var status in _playerStatusMap.Values)
+        {
+            HandleStatus(status);
+        }
+    }
+
+    float GetNormalized(PlayerStatusData data)
+    {
+        var normalizedValue = _playerStatusMap[data].CurrentValue / data.MaxValue;
+        return normalizedValue;
+    }
+
+    private void HandleStatus(PlayerStatus status)
+    {
+        var change = status.StatusData.BaseRegenRate + status.StatusData.BaseDecayRate;
+
+        foreach (var influence in status.StatusData.InfluenceEffects)
+        {
+            var affectingStatus = influence.AffectingStatus;
+            var affectingStatusCurrentValue = GetNormalized(affectingStatus);
+
+            foreach(var threshold in influence.Thresholds)
+            {
+                if (affectingStatusCurrentValue > threshold.Cutoff)
+                {
+                    change += threshold.Modifier;
+                    break;
+                }
+            }
+        }
+
+        ModifyPlayerStatus(status.StatusData, change * Time.deltaTime);
     }
 
     [ContextMenu("Test")]
     void Test()
     {
         var statusData = _allStatusData[_debugStatusIndex];
-        UpdatePlayerStatus(statusData, _debugValue);
+        ModifyPlayerStatus(statusData, _debugValue);
     }
 }

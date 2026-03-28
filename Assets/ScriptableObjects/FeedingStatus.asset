@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 314569596b4f3124ab617daaf18bb040, type: 3}
-  m_Name: StarvationStatus
+  m_Name: FeedingStatus
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStatusData
-  Name: Starvation
+  Name: Feeding
   Icon: {fileID: 21300000, guid: 6712db9a17b8b2449a604e5fc490b658, type: 3}
   Color: {fileID: 21300000, guid: f8fee687f60c4744b84cbd304a55d747, type: 3}
-  MaxValue: 1000
+  MaxValue: 100
+  BaseRegenRate: 0
+  BaseDecayRate: -0.05
+  InfluenceEffects: []
