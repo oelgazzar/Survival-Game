@@ -13,6 +13,7 @@ public class InventorySystem : MonoBehaviour
 
     public static InventorySystem Instance;
     public static event Action<List<InventorySlot>> InventoryChanged;
+    public static event Action<InventoryItemData> ItemAddedToInventory;
 
     readonly List<InventorySlot> _slots = new();
 
@@ -80,6 +81,7 @@ public class InventorySystem : MonoBehaviour
         slot.Amount = 1;
 
         InventoryChanged?.Invoke(_slots);
+        ItemAddedToInventory?.Invoke(inventoryItemData);
 
         return true;
     }
