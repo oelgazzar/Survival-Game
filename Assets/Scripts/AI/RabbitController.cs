@@ -22,7 +22,7 @@ public class RabbitController : MonoBehaviour
         _animator = GetComponent<Animator>();
 
         _runTime = Random.Range(5, 7);
-        _idleTime = Random.Range(7, 12);
+        _idleTime = Random.Range(1, 3);
 
         _isRunning = true;
     }

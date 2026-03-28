@@ -81,13 +81,16 @@ PrefabInstance:
       addedObject: {fileID: 9005662620570079491}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 988b8b3b52b09a74f9db9350c61edbc2, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 8557216553546227537}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 988b8b3b52b09a74f9db9350c61edbc2, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 252544668201455765}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 988b8b3b52b09a74f9db9350c61edbc2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7004877256421347928}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 988b8b3b52b09a74f9db9350c61edbc2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8557216553546227537}
+      addedObject: {fileID: 4134319860001223008}
   m_SourcePrefab: {fileID: 100100000, guid: 988b8b3b52b09a74f9db9350c61edbc2, type: 3}
 --- !u!1 &4423071090435520619 stripped
 GameObject:
@@ -115,6 +118,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3080591, y: 0.90573907, z: 1.4326189}
   m_Center: {x: -0.022328615, y: 0.073403165, z: 0.023294598}
+--- !u!65 &8557216553546227537
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4423071090435520619}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50, y: 5, z: 50}
+  m_Center: {x: -0.022328615, y: 0.073403165, z: 0.023538738}
 --- !u!114 &252544668201455765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,24 +171,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   _inventoryItemData: {fileID: 11400000, guid: 992f49524b07df941840ce83a0227362, type: 2}
   PlayerInRange: 0
---- !u!65 &8557216553546227537
-BoxCollider:
+--- !u!114 &4134319860001223008
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4423071090435520619}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 50, y: 5, z: 50}
-  m_Center: {x: -0.022328615, y: 0.073403165, z: 0.023538738}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad741399980ab44799fd2582af5eaf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pickable

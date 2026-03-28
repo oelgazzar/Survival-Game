@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2862021090735457742}
   - component: {fileID: 23369352441393412}
   - component: {fileID: 4464467751417496891}
+  - component: {fileID: 3857711202771962751}
   - component: {fileID: -4539539802335762785}
   - component: {fileID: 2800295969244987393}
-  - component: {fileID: 3857711202771962751}
+  - component: {fileID: 1229508459078084031}
   m_Layer: 0
   m_Name: ST_Stone1
   m_TagString: Untagged
@@ -115,6 +116,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.3874562, y: 0.92485404, z: 1.6573727}
   m_Center: {x: 0.058700114, y: 0.07593876, z: 0.15196908}
+--- !u!65 &3857711202771962751
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969192603740655825}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 50, y: 5, z: 50}
+  m_Center: {x: 0.058700114, y: 0.07593876, z: 0.15196908}
 --- !u!114 &-4539539802335762785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,24 +169,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   _inventoryItemData: {fileID: 11400000, guid: 992f49524b07df941840ce83a0227362, type: 2}
   PlayerInRange: 0
---- !u!65 &3857711202771962751
-BoxCollider:
+--- !u!114 &1229508459078084031
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1969192603740655825}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 50, y: 5, z: 50}
-  m_Center: {x: 0.058700114, y: 0.07593876, z: 0.15196908}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cad741399980ab44799fd2582af5eaf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pickable

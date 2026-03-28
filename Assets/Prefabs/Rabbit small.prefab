@@ -730,10 +730,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4677745771901032}
   - component: {fileID: 95674028643950644}
-  - component: {fileID: 4604781563807415250}
   - component: {fileID: 4097585857160165648}
   - component: {fileID: 617570297968355970}
   - component: {fileID: 3337239793724000138}
+  - component: {fileID: 4604781563807415250}
   - component: {fileID: -1408699823937277818}
   m_Layer: 0
   m_Name: Rabbit small
@@ -782,22 +782,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4604781563807415250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588090451174212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 637242a53f1afb84c9683c1a93d44e04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Rabbit
-  _runTime: 9.62
-  _idleTime: 5.6
-  _wanderAreaCenter: {x: 500, y: 0, z: 500}
-  _wanderAreaRadius: 100
 --- !u!195 &4097585857160165648
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -868,6 +852,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &4604781563807415250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588090451174212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 637242a53f1afb84c9683c1a93d44e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Rabbit
+  _wanderAreaCenter: {x: 500, y: 0, z: 500}
+  _wanderAreaRadius: 100
 --- !u!114 &-1408699823937277818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -880,6 +878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d7a64822cbcaf4883a9c3389bcb3df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  _inventoryItemData: {fileID: 0}
+  PlayerInRange: 0
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0
