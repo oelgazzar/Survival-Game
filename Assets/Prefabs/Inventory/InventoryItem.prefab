@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
   _icon: {fileID: 4103779560518722344}
   _amountText: {fileID: 1059544172173874679}
+  _nameText: {fileID: 0}
   SlotIndex: 0
 --- !u!1 &5840342113941213789
 GameObject:

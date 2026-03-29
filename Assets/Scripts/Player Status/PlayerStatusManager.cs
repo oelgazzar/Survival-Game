@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStatusManager : MonoBehaviour
@@ -89,14 +90,10 @@ public class PlayerStatusManager : MonoBehaviour
         ModifyPlayerStatus(statusData, _debugValue);
     }
 
-    private void OnEnable()
+    public bool TryApplyConsumableToStatus(ConsumableInventoryItemData consumable)
     {
-        InventorySystem.Instance.ItemConsumed += HandleItemConsumed;
+        var status = consumable.Effect.Status;
+        ModifyPlayerStatus(status, consumable.Effect.Modifier);
+        return true; // later return false if health full
     }
-
-    private void OnDisable()
-    {
-        InventorySystem.Instance.ItemConsumed -= HandleItemConsumed;
-    }
-
 }

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 455432b87aa07064f9559eb0077e5755, type: 3}
-  m_Name: Apple
+  m_Name: Egg
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableInventoryItemData
-  Name: Apple
+  Name: Egg
   ItemType: 1
-  Sprite: {fileID: -728231777, guid: c76e6eaf855af774e8e394a712b28102, type: 3}
+  Sprite: {fileID: 21300000, guid: b66324a01227062479b08f950b0bbc22, type: 3}
   Effect:
     Status: {fileID: 11400000, guid: 07dad7ee9827e53498c2a31905a36dc5, type: 2}
-    Modifier: 10
+    Modifier: 5

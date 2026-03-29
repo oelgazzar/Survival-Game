@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   Name: Axe
+  ItemType: 2
   Sprite: {fileID: -1045854658, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
-  IsConsumable: 0

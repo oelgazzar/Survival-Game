@@ -6,16 +6,15 @@ public class InventorySystem : MonoBehaviour
 {
     /// <summary>
     /// for testing purposes
+    /// </summary>
     [SerializeField] InventoryItemData _debugStoneItemData;
     [SerializeField] InventoryItemData _debugStringItemData;
-    /// </summary>
     [SerializeField] int _capacity = 21;
 
     public static InventorySystem Instance;
 
     public static event Action<List<InventorySlot>> InventoryChanged;
     public static event Action<InventoryItemData> ItemAddedToInventory;
-    public event Action<InventoryItemData> ItemConsumed;
 
     readonly List<InventorySlot> _slots = new();
 
@@ -176,13 +175,23 @@ public class InventorySystem : MonoBehaviour
         InventoryChanged?.Invoke(_slots);
     }
 
-    public void Consume(int slotIndex)
+    public void UseItem(int slotIndex)
     {
         var item = _slots[slotIndex].Item;
-        if (item != null && item.IsConsumable)
+        if (item != null)
         {
-            RemoveItemAt(slotIndex);
-            ItemConsumed?.Invoke(item);
+            switch(item.ItemType)
+            {
+                case InventoryItemType.Consumable:
+                    var consumable = item as ConsumableInventoryItemData;
+                    if ( consumable != null &&
+                        PlayerStatusManager.Instance.TryApplyConsumableToStatus(consumable))
+                    {
+                        RemoveItemAt(slotIndex);
+                    }
+                    break;
+
+            }
         }
     }
 }

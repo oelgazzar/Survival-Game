@@ -1,9 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/InventoryItem")]
+[CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/InventoryItems/InventoryItem")]
 public class InventoryItemData : ScriptableObject
 {
     public string Name;
+    public InventoryItemType ItemType;
     public Sprite Sprite;
-    public bool IsConsumable = false;
+}
+
+public enum InventoryItemType
+{
+    Material, Consumable, Equippable, QuestItem
 }

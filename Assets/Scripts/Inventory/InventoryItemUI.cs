@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
+public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler,
+    IPointerClickHandler
 {
     [SerializeField] Image _icon;
     [SerializeField] TMP_Text _amountText;
@@ -28,6 +29,7 @@ public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     {
         _inventoryItemData = inventoryItemData;
         _icon.sprite = _inventoryItemData.Sprite;
+        _icon.preserveAspect = true;
         _amountText.text = Amount.ToString();
     }
 
@@ -62,7 +64,7 @@ public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            InventorySystem.Instance.Consume(SlotIndex);
+            InventorySystem.Instance.UseItem(SlotIndex);
         }
     }
 }

@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   Name: Bow
+  ItemType: 2
   Sprite: {fileID: 21300000, guid: 27d628968872ec1479343797014c4099, type: 3}
