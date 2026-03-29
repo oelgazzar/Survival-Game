@@ -77,10 +77,26 @@ public class PlayerStatusManager : MonoBehaviour
         ModifyPlayerStatus(status.StatusData, change * Time.deltaTime);
     }
 
+    private void HandleItemConsumed(InventoryItemData data)
+    {
+        //throw new NotImplementedException();
+    }
+
     [ContextMenu("Test")]
     void Test()
     {
         var statusData = _allStatusData[_debugStatusIndex];
         ModifyPlayerStatus(statusData, _debugValue);
     }
+
+    private void OnEnable()
+    {
+        InventorySystem.Instance.ItemConsumed += HandleItemConsumed;
+    }
+
+    private void OnDisable()
+    {
+        InventorySystem.Instance.ItemConsumed -= HandleItemConsumed;
+    }
+
 }

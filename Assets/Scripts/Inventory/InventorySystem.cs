@@ -12,8 +12,10 @@ public class InventorySystem : MonoBehaviour
     [SerializeField] int _capacity = 21;
 
     public static InventorySystem Instance;
+
     public static event Action<List<InventorySlot>> InventoryChanged;
     public static event Action<InventoryItemData> ItemAddedToInventory;
+    public event Action<InventoryItemData> ItemConsumed;
 
     readonly List<InventorySlot> _slots = new();
 
@@ -137,6 +139,22 @@ public class InventorySystem : MonoBehaviour
         InventoryChanged?.Invoke(_slots);
     }
 
+    public void RemoveItemAt(int index)
+    {
+        var slot = _slots[index];
+        if (slot.Item != null)
+        {
+            slot.Amount--;
+            if (slot.Amount <= 0)
+            {
+                slot.Item = null;
+                slot.Amount = 0;
+            }
+        }
+
+        InventoryChanged?.Invoke(_slots);
+    }
+
     // Debug methods
     [ContextMenu("Test Remove 0 stones")]
     void RemoveZeroStones()
@@ -156,5 +174,15 @@ public class InventorySystem : MonoBehaviour
         (_slots[fromIndex], _slots[toIndex]) = (_slots[toIndex], _slots[fromIndex]);
 
         InventoryChanged?.Invoke(_slots);
+    }
+
+    public void Consume(int slotIndex)
+    {
+        var item = _slots[slotIndex].Item;
+        if (item != null && item.IsConsumable)
+        {
+            RemoveItemAt(slotIndex);
+            ItemConsumed?.Invoke(item);
+        }
     }
 }

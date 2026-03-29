@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9d12d866e08c82448ee48f3daeace46, type: 3}
-  m_Name: Axe
+  m_Name: Apple
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
-  Name: Axe
-  Sprite: {fileID: -1045854658, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
-  IsConsumable: 0
+  Name: Apple
+  Sprite: {fileID: -728231777, guid: c76e6eaf855af774e8e394a712b28102, type: 3}
+  IsConsumable: 1

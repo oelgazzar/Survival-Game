@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler
 {
     [SerializeField] Image _icon;
     [SerializeField] TMP_Text _amountText;
@@ -56,5 +56,13 @@ public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     private void OnEnable()
     {
         _canvasGroup.blocksRaycasts = true;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            InventorySystem.Instance.Consume(SlotIndex);
+        }
     }
 }

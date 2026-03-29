@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   Name: Wood
-  Sprite: {fileID: -535843709, guid: ac702ce6e5cce0d41bd5b7854deebb45, type: 3}
+  Sprite: {fileID: -192201698, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
+  IsConsumable: 0

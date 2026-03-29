@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: d31db8d9-962e-4c19-bbd3-e1888229dcca_0
+      name: Wood
       rect:
         serializedVersion: 2
-        x: 39
-        y: 1309
-        width: 195
-        height: 133
+        x: 20
+        y: 1286
+        width: 235
+        height: 179
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,13 +145,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d31db8d9-962e-4c19-bbd3-e1888229dcca_1
+      name: Stone
       rect:
         serializedVersion: 2
-        x: 269
-        y: 1314
-        width: 141
-        height: 136
+        x: 248
+        y: 1286
+        width: 189
+        height: 178
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,13 +233,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: d31db8d9-962e-4c19-bbd3-e1888229dcca_5
+      name: Axe
       rect:
         serializedVersion: 2
-        x: 56
-        y: 1073
-        width: 158
-        height: 190
+        x: 31
+        y: 1052
+        width: 211
+        height: 226
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -798,8 +798,9 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      d31db8d9-962e-4c19-bbd3-e1888229dcca_0: -192201698
-      d31db8d9-962e-4c19-bbd3-e1888229dcca_1: -2686530
+      Axe: -1045854658
+      Stone: -2686530
+      Wood: -192201698
       d31db8d9-962e-4c19-bbd3-e1888229dcca_10: -2058694934
       d31db8d9-962e-4c19-bbd3-e1888229dcca_11: 1248230099
       d31db8d9-962e-4c19-bbd3-e1888229dcca_12: 1651973316
@@ -823,7 +824,6 @@ TextureImporter:
       d31db8d9-962e-4c19-bbd3-e1888229dcca_29: -90050042
       d31db8d9-962e-4c19-bbd3-e1888229dcca_3: 543249719
       d31db8d9-962e-4c19-bbd3-e1888229dcca_4: -691753372
-      d31db8d9-962e-4c19-bbd3-e1888229dcca_5: -1045854658
       d31db8d9-962e-4c19-bbd3-e1888229dcca_6: 594581388
       d31db8d9-962e-4c19-bbd3-e1888229dcca_7: -1088423135
       d31db8d9-962e-4c19-bbd3-e1888229dcca_8: 61918046

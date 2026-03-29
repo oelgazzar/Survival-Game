@@ -45,10 +45,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 256
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 86f34948-b7c5-4a43-abda-e31bc80e5bba_0
+      name: Apple
       rect:
         serializedVersion: 2
-        x: 65
-        y: 772
-        width: 163
-        height: 175
+        x: 36
+        y: 741
+        width: 222
+        height: 226
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -380,7 +380,6 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":256.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      86f34948-b7c5-4a43-abda-e31bc80e5bba_0: -728231777
       86f34948-b7c5-4a43-abda-e31bc80e5bba_1: -400153010
       86f34948-b7c5-4a43-abda-e31bc80e5bba_10: -1039636214
       86f34948-b7c5-4a43-abda-e31bc80e5bba_2: -134236209
@@ -391,6 +390,7 @@ TextureImporter:
       86f34948-b7c5-4a43-abda-e31bc80e5bba_7: -1758187910
       86f34948-b7c5-4a43-abda-e31bc80e5bba_8: 476644025
       86f34948-b7c5-4a43-abda-e31bc80e5bba_9: -182802126
+      Apple: -728231777
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
