@@ -27,6 +27,8 @@ public class InteractionManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.State == GameManager.GameState.Paused) return;
+
         var ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.SphereCast(ray, _raycastRadius, out var hit, _raycastDistance))
         {

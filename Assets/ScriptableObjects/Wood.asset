@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   Name: Wood
+  Info:
+    Name: Wood
+    Description: Crafting material
+    Functionality: Use for crafting Axe, Bow, etc...
+  ItemType: 0
   Sprite: {fileID: -192201698, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
-  IsConsumable: 0

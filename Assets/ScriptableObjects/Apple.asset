@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableInventoryItemData
   Name: Apple
+  Info:
+    Name: Apple
+    Description: Food
+    Functionality: Consume to increase feeding meter.
   ItemType: 1
   Sprite: {fileID: -728231777, guid: c76e6eaf855af774e8e394a712b28102, type: 3}
   Effect:

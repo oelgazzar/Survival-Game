@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   Name: Stone
+  Info:
+    Name: Stone
+    Description: Crafting material
+    Functionality: Use for crafting axe, etc...
+  ItemType: 0
   Sprite: {fileID: -2686530, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
-  IsConsumable: 0

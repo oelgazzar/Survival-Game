@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler,
-    IPointerClickHandler
+    IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image _icon;
     [SerializeField] TMP_Text _amountText;
@@ -18,11 +18,15 @@ public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     Transform _startParent;
     InventoryItemData _inventoryItemData;
 
+    ItemInfoUI _itemInfoUI;
+
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvas = GetComponentInParent<Canvas>();
         _canvasGroup = GetComponent<CanvasGroup>();
+
+        _itemInfoUI = SceneContext.Instance.ItemInfoPanel.GetComponent<ItemInfoUI>();
     }
 
     public void SetData(InventoryItemData inventoryItemData, int Amount)
@@ -66,5 +70,16 @@ public class InventoryItemUI : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         {
             InventorySystem.Instance.UseItem(SlotIndex);
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        _itemInfoUI.gameObject.SetActive(true);
+        _itemInfoUI.SetItemInfo(_inventoryItemData.Info);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        _itemInfoUI.gameObject.SetActive(false);
     }
 }
