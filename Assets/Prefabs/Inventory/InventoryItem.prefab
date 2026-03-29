@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 4103779560518722344}
   - component: {fileID: 3749359027214557409}
   - component: {fileID: 4805241827302130756}
+  - component: {fileID: 2083549812808435322}
+  - component: {fileID: 820148498320436903}
+  - component: {fileID: 1143124223394562683}
   m_Layer: 5
   m_Name: InventoryItem
   m_TagString: Untagged
@@ -104,8 +107,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DraggableItem
   _icon: {fileID: 4103779560518722344}
   _amountText: {fileID: 1059544172173874679}
-  _nameText: {fileID: 0}
   SlotIndex: 0
+  Data: {fileID: 0}
+--- !u!114 &2083549812808435322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331821358980311086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379a5f1494c5d804f9169e1c59d2c162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItemDragHandler
+--- !u!114 &820148498320436903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331821358980311086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c23119857968c64889eb745f824eb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItemHoverHandler
+--- !u!114 &1143124223394562683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1331821358980311086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354de98fcfb4556408912dcbf7a3eecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItemRightClickHandler
 --- !u!1 &5840342113941213789
 GameObject:
   m_ObjectHideFlags: 0
