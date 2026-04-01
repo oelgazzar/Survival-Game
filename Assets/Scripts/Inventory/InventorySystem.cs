@@ -4,63 +4,37 @@ using System;
 
 public class InventorySystem : MonoBehaviour
 {
-    /// <summary>
-    /// for testing purposes
-    /// </summary>
-    [SerializeField] InventoryItemData _debugStoneItemData;
-    [SerializeField] InventoryItemData _debugStringItemData;
     [SerializeField] int _capacity = 21;
+    [SerializeField] int _numQuickSlots = 7;
 
     public static InventorySystem Instance;
 
     public static event Action<List<InventorySlot>> InventoryChanged;
+    public static event Action<InventorySlot[]> QuickSlotsUpdated;
     public static event Action<InventoryItemData> ItemAddedToInventory;
 
-    readonly List<InventorySlot> _slots = new();
+    readonly List<InventorySlot> _inventorySlots = new();
+    InventorySlot[] _quickSlots;
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
+            Destroy(gameObject);
+            return;
         }
+
+        Instance = this;
+        InitSlots();
     }
 
-    private void Start()
-    {
-        InitSlotList();
-    }
-
-    void InitSlotList()
+    void InitSlots()
     {
         for (var i = 0; i < _capacity; i++)
         {
-            _slots.Add(new InventorySlot());
+            _inventorySlots.Add(new InventorySlot(i));
         }
-    }
-
-    InventorySlot FindNextEmptySlot()
-    {
-        foreach (var slot in _slots)
-        {
-            if (slot.Item == null)
-                return slot;
-        }
-        return null;
-    }
-
-    public int GetItemCount(InventoryItemData item)
-    {
-        var count = 0;
-
-        foreach (var slot in _slots)
-        {
-            if (slot.Item == item)
-            {
-                count += slot.Amount;
-            }
-        }
-        return count;
+        _quickSlots = new InventorySlot[_numQuickSlots];
     }
 
     public bool TryAddItem(InventoryItemData inventoryItemData)
@@ -81,16 +55,26 @@ public class InventorySystem : MonoBehaviour
         slot.Item = inventoryItemData;
         slot.Amount = 1;
 
-        InventoryChanged?.Invoke(_slots);
+        InventoryChanged?.Invoke(_inventorySlots);
         ItemAddedToInventory?.Invoke(inventoryItemData);
 
         return true;
     }
 
+    InventorySlot FindNextEmptySlot()
+    {
+        foreach (var slot in _inventorySlots)
+        {
+            if (slot.Item == null)
+                return slot;
+        }
+        return null;
+    }
+
     public bool HasItem(InventoryItemData item, int amount)
     {
         var available = 0;
-        foreach (var slot in _slots)
+        foreach (var slot in _inventorySlots)
         {
             if (slot.Item == item)
             {
@@ -102,6 +86,20 @@ public class InventorySystem : MonoBehaviour
         }
 
         return available >= amount;
+    }
+
+    public int GetItemCount(InventoryItemData item)
+    {
+        var count = 0;
+
+        foreach (var slot in _inventorySlots)
+        {
+            if (slot.Item == item)
+            {
+                count += slot.Amount;
+            }
+        }
+        return count;
     }
 
     public void RemoveItem(InventoryItemData item, int amount)
@@ -117,7 +115,7 @@ public class InventorySystem : MonoBehaviour
 
         var remaining = amount;
 
-        foreach (var slot in _slots)
+        foreach (var slot in _inventorySlots)
         {
             if (slot.Item == item)
             {
@@ -135,12 +133,12 @@ public class InventorySystem : MonoBehaviour
             }
         }
 
-        InventoryChanged?.Invoke(_slots);
+        InventoryChanged?.Invoke(_inventorySlots);
     }
 
     public void RemoveItemAt(int index)
     {
-        var slot = _slots[index];
+        var slot = _inventorySlots[index];
         if (slot.Item != null)
         {
             slot.Amount--;
@@ -151,33 +149,33 @@ public class InventorySystem : MonoBehaviour
             }
         }
 
-        InventoryChanged?.Invoke(_slots);
-    }
+        ClearQuickSlot(index);
 
-    // Debug methods
-    [ContextMenu("Test Remove 0 stones")]
-    void RemoveZeroStones()
-    {
-        RemoveItem(_debugStoneItemData, 0);
-    }
-
-    [ContextMenu("Test Remove 5 stones")]
-    void RemoveFiveStones()
-    {
-        RemoveItem(_debugStoneItemData, 5);
+        InventoryChanged?.Invoke(_inventorySlots);
     }
 
     // Drag and drop functionality
     public void MoveItem(int fromIndex, int toIndex)
     {
-        (_slots[fromIndex], _slots[toIndex]) = (_slots[toIndex], _slots[fromIndex]);
+        (_inventorySlots[fromIndex], _inventorySlots[toIndex]) = (_inventorySlots[toIndex], _inventorySlots[fromIndex]);
 
-        InventoryChanged?.Invoke(_slots);
+        UpdateSlotsIDs();
+
+        InventoryChanged?.Invoke(_inventorySlots);
+    }
+
+    private void UpdateSlotsIDs()
+    {
+        for (var i = 0; i < _inventorySlots.Count; i++)
+        {
+            var slot = _inventorySlots[i];
+            slot.SlotID = i;
+        }
     }
 
     public void UseItem(int slotIndex)
     {
-        var item = _slots[slotIndex].Item;
+        var item = _inventorySlots[slotIndex].Item;
         if (item != null)
         {
             switch(item.ItemType)
@@ -193,5 +191,64 @@ public class InventorySystem : MonoBehaviour
 
             }
         }
+    }
+
+    public void UseItemAtQuickSlot(int quickSlotIndex)
+    {
+        if (_quickSlots[quickSlotIndex] != null)
+        {
+            var inventorySlot = _quickSlots[quickSlotIndex];
+            for (var i = 0; i < _inventorySlots.Count; i++)
+            {
+                if (_inventorySlots[i] == inventorySlot)
+                {
+                    UseItem(i);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void AddItemToQuickSlot(int inventorySlotIndex, int quickSlotIndex)
+    {
+        // Prevent duplicates
+        ClearQuickSlot(inventorySlotIndex);
+
+        var inventorySlot = _inventorySlots[inventorySlotIndex];
+
+        _quickSlots[quickSlotIndex] = inventorySlot;
+
+        QuickSlotsUpdated?.Invoke(_quickSlots);
+    }
+
+    public void ClearQuickSlot(int inventorySlotIndex)
+    {
+        var inventorySlot = _inventorySlots[inventorySlotIndex];
+        
+        for (var i = 0; i < _quickSlots.Length; i++)
+        {
+            var quickSlot = _quickSlots[i];
+            if (inventorySlot == quickSlot)
+            {
+                _quickSlots[i] = null;
+                break;
+            }
+        }
+        QuickSlotsUpdated?.Invoke(_quickSlots);
+    }
+
+    private void SyncQuickSlot(List<InventorySlot> _)
+    {
+        QuickSlotsUpdated?.Invoke(_quickSlots);
+    }
+
+    private void OnEnable()
+    {
+        InventoryChanged += SyncQuickSlot;
+    }
+
+    private void OnDisable()
+    {
+        InventoryChanged += SyncQuickSlot;        
     }
 }

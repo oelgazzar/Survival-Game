@@ -14,7 +14,7 @@ public class InventoryItemRightClickHandler : MonoBehaviour, IPointerClickHandle
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            InventorySystem.Instance.UseItem(_inventoryItemUI.SlotIndex);
+            InventorySystem.Instance.UseItem(_inventoryItemUI.InventorySlotIndex);
         }
     }
 }
