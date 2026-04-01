@@ -27,7 +27,11 @@ public class InteractionManager : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.State == GameManager.GameState.Paused) return;
+        if (GameManager.Instance.State == GameManager.GameState.Paused)
+        {
+            SetScreenCenterImage(null);
+            return;
+        }
 
         var ray = _cam.ScreenPointToRay(Mouse.current.position.ReadValue());
         if (Physics.SphereCast(ray, _raycastRadius, out var hit, _raycastDistance))
@@ -52,13 +56,13 @@ public class InteractionManager : MonoBehaviour
 
     void SetScreenCenterImage(Sprite sprite)
     {
+        _screenCenter.enabled = sprite != null;
         _screenCenter.sprite = sprite;
 
         if (sprite == _DotImage)
         {
             _screenCenter.rectTransform.sizeDelta = Vector2.one * 5;
-        } else
-        {
+        } else if (sprite == _HandImage) {
             _screenCenter.rectTransform.sizeDelta = Vector2.one * 30;
         }
     }

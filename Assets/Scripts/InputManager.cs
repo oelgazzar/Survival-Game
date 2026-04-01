@@ -11,22 +11,24 @@ public class InputManager : MonoBehaviour
     [SerializeField] GameObject _toolsScreen;
 
     AudioSource _audioSource;
-    readonly Dictionary<KeyControl, int> _keySlotMap = new()
-    {
-        {Keyboard.current.digit1Key, 0},
-        {Keyboard.current.digit2Key, 1},
-        {Keyboard.current.digit3Key, 2},
-        {Keyboard.current.digit4Key, 3},
-        {Keyboard.current.digit5Key, 4},
-        {Keyboard.current.digit6Key, 5},
-        {Keyboard.current.digit7Key, 6},
-    };
+    Dictionary<KeyControl, int> _keySlotMap;
 
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        _keySlotMap= new()
+        {
+            {Keyboard.current.digit1Key, 0},
+            {Keyboard.current.digit2Key, 1},
+            {Keyboard.current.digit3Key, 2},
+            {Keyboard.current.digit4Key, 3},
+            {Keyboard.current.digit5Key, 4},
+            {Keyboard.current.digit6Key, 5},
+            {Keyboard.current.digit7Key, 6},
+        };
     }
 
     void Update()
