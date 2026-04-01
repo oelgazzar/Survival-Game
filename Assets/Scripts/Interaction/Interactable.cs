@@ -18,6 +18,8 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.State == GameManager.GameState.Paused) return;
+
         if (Mouse.current.leftButton.wasPressedThisFrame && PlayerInRange && InteractionManager.Instance.Target == this)
         {
             if (InventorySystem.Instance.TryAddItem(_inventoryItemData))

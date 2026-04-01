@@ -17,7 +17,7 @@ public class NotificationManager : MonoBehaviour
     string _lastMessage = string.Empty;
     int _messageCounter = 1;
 
-    private void Start()
+    private void Awake()
     {
         _notificationUIPool = new ObjectPool<NotificationUI>(
             () => Instantiate(_notificationPrefab, _notificationPanel.transform),

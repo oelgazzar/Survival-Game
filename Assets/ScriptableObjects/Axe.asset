@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9d12d866e08c82448ee48f3daeace46, type: 3}
+  m_Script: {fileID: 11500000, guid: 221c5d466c9a014459f2f3ca18153a79, type: 3}
   m_Name: Axe
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
+  m_EditorClassIdentifier: Assembly-CSharp::EquippableInventoryItemData
   Name: Axe
   Info:
     Name: Axe

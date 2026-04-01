@@ -40,7 +40,7 @@ public abstract class SlotUI : MonoBehaviour, IDropHandler {
 
         _itemUI.InventorySlotIndex = inventorySlot.SlotID;
         _itemUI.SlotType = SlotType;
-        _itemUI.SetData(inventorySlot.Item, inventorySlot.Amount);
+        _itemUI.SetData(inventorySlot.Item, inventorySlot.Amount, inventorySlot.IsEquipped);
     }
 }
 

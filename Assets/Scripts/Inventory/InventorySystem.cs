@@ -6,6 +6,7 @@ public class InventorySystem : MonoBehaviour
 {
     [SerializeField] int _capacity = 21;
     [SerializeField] int _numQuickSlots = 7;
+    [SerializeField] InventoryItemData _debugAxeItem;
 
     public static InventorySystem Instance;
 
@@ -26,6 +27,12 @@ public class InventorySystem : MonoBehaviour
 
         Instance = this;
         InitSlots();
+
+    }
+
+    private void Start()
+    {
+        TryAddItem(_debugAxeItem);        
     }
 
     void InitSlots()
@@ -190,32 +197,89 @@ public class InventorySystem : MonoBehaviour
                     }
                     break;
 
+                case InventoryItemType.Equippable:
+                    var equppiable = item as EquippableInventoryItemData;
+                    if ( equppiable != null)
+                    {
+                        if (FindInQuickSlots(slotIndex, out int quickSlotIndex) == false)
+                        {
+                            quickSlotIndex = FindFirstEmptyQuickSlotIndex();
+                            AddItemToQuickSlot(slotIndex, quickSlotIndex);
+                        }
+                        EquipItem(quickSlotIndex);
+                    }
+                    break;
+
             }
         }
     }
 
-    public void UseItemAtQuickSlot(int quickSlotIndex)
+    private bool FindInQuickSlots(int inventorySlotIndex, out int index)
+    {
+        for (var i = 0; i < _quickSlots.Length; i++)
+        {
+            var slot = _quickSlots[i];
+            if (slot == null) continue;
+            if (slot.SlotID == inventorySlotIndex)
+            {
+                index = i;
+                return true;
+            }
+        }
+        index = -1;
+        return false;
+    }
+
+    private int FindFirstEmptyQuickSlotIndex()
+    {
+        for (var i = 0; i < _quickSlots.Length; i++)
+        {
+            var slot = _quickSlots[i];
+            if (slot == null) return i;
+        }
+
+        return 0; // or _quickSlots[^1]
+    }
+
+    public void EquipItem(int quickSlotIndex)
     {
         if (_quickSlots[quickSlotIndex] != null)
         {
             var inventorySlot = _quickSlots[quickSlotIndex];
-            for (var i = 0; i < _inventorySlots.Count; i++)
+            inventorySlot.IsEquipped = !inventorySlot.IsEquipped;
+
+            var equippable = inventorySlot.Item as EquippableInventoryItemData;
+            EquipSystem.Instance.ToggleEquipItem(equippable, inventorySlot.IsEquipped);
+
+            UnequipOtherSlots(inventorySlot);
+            InventoryChanged?.Invoke(_inventorySlots);
+        }
+    }
+
+    private void UnequipOtherSlots(InventorySlot equippedSlot)
+    {
+        foreach(var slot in _inventorySlots)
+        {
+            if (slot != equippedSlot)
             {
-                if (_inventorySlots[i] == inventorySlot)
-                {
-                    UseItem(i);
-                    return;
-                }
+                slot.IsEquipped = false;
             }
         }
     }
 
     public void AddItemToQuickSlot(int inventorySlotIndex, int quickSlotIndex)
     {
+        var inventorySlot = _inventorySlots[inventorySlotIndex];
+
+        if (inventorySlot.Item.ItemType != InventoryItemType.Equippable)
+        {
+            Debug.Log("Item is not equippable");
+            return;
+        }
+
         // Prevent duplicates
         ClearQuickSlot(inventorySlotIndex);
 
-        var inventorySlot = _inventorySlots[inventorySlotIndex];
 
         _quickSlots[quickSlotIndex] = inventorySlot;
 

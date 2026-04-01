@@ -12,7 +12,13 @@ public class InventorySlotUI : SlotUI
         if (eventData.pointerDrag != null &&
             eventData.pointerDrag.TryGetComponent<InventoryItemUI>(out var itemUI))
         {
-            InventorySystem.Instance.MoveItem(itemUI.InventorySlotIndex, Index);
+            if (itemUI.SlotType == SlotUIType.QuickSlot)
+            {
+                InventorySystem.Instance.ClearQuickSlot(itemUI.InventorySlotIndex);
+            } else
+            {
+                InventorySystem.Instance.MoveItem(itemUI.InventorySlotIndex, Index);
+            }
         }
     }
 }

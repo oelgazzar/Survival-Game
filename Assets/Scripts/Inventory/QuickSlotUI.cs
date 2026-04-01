@@ -25,4 +25,16 @@ public class QuickSlotUI : SlotUI
         base.SetIndex(index);
         _numberText.text = (index + 1).ToString();
     }
+
+    public override void SetData(InventorySlot inventorySlot)
+    {
+        base.SetData(inventorySlot);
+        if (inventorySlot != null && inventorySlot.IsEquipped)
+        {
+            _numberText.color = Color.white;
+        } else
+        {
+            _numberText.color = Color.white * .5f;
+        }
+    }
 }

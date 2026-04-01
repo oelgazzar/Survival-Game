@@ -56,7 +56,7 @@ public class InputManager : MonoBehaviour
             if (key.wasPressedThisFrame)
             {
                 var quickSlotIndex = _keySlotMap[key];
-                InventorySystem.Instance.UseItemAtQuickSlot(quickSlotIndex);
+                InventorySystem.Instance.EquipItem(quickSlotIndex);
             }
         }
     }

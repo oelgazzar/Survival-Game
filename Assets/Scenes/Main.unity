@@ -990,6 +990,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7616664476675964578, guid: 8679eb0fe9f522b4f93212a7b2c2b671, type: 3}
   m_PrefabInstance: {fileID: 1776021353}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &232934314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 232934315}
+  - component: {fileID: 232934316}
+  m_Layer: 0
+  m_Name: EquipSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232934315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232934314}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -344.80655, y: -165.14746, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 862709209}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &232934316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232934314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c00896f39c3d34d97498798c283d3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EquipSystem
+  _equippedItem: {fileID: 0}
 --- !u!224 &239225834 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1310538824360085296, guid: c63baab476efab949b52f17cf5c488b2, type: 3}
@@ -4328,6 +4373,7 @@ Transform:
   - {fileID: 8496666851957824278}
   - {fileID: 631103445384285955}
   - {fileID: 2067122103}
+  - {fileID: 232934315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &866674627
@@ -10007,10 +10053,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abf0df2fdb33ab74f9d7957efd16f91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventorySystem
-  _debugStoneItemData: {fileID: 11400000, guid: 992f49524b07df941840ce83a0227362, type: 2}
-  _debugStringItemData: {fileID: 11400000, guid: d720d2c157435734a9d0cdd4e9b2e458, type: 2}
   _capacity: 21
   _numQuickSlots: 7
+  _debugAxeItem: {fileID: 11400000, guid: a8918cd33a967c948ac4c38bca4aa930, type: 2}
 --- !u!4 &1855642811
 Transform:
   m_ObjectHideFlags: 0
