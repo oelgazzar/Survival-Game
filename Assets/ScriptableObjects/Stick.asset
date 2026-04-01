@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b9d12d866e08c82448ee48f3daeace46, type: 3}
-  m_Name: Wood
+  m_Name: Stick
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
-  Name: Wood
+  Name: Stick
   Info:
-    Name: Wood
+    Name: Stick
     Description: Crafting material
     Functionality: Use for crafting Axe, Bow, etc...
   ItemType: 0
-  Sprite: {fileID: -192201698, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
+  Sprite: {fileID: 21300000, guid: 45f1afbc81ff26641854d21aca0f043c, type: 3}
