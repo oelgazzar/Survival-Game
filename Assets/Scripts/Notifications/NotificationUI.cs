@@ -38,20 +38,20 @@ public class NotificationUI : MonoBehaviour
 
     IEnumerator Hide()
     {
-        yield return new WaitForSeconds(_duration);
+        yield return new WaitForSecondsRealtime(_duration);
         
         float timer = 0;
         while (timer < _fadeDuration)
         {
             _canvasGroup.alpha = Mathf.Lerp(1, 0, timer / _fadeDuration);
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             yield return null;
         }
         if (Application.isPlaying)
             NotificationTimedOut?.Invoke(this);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         NotificationTimedOut = null;
         StopAllCoroutines();
