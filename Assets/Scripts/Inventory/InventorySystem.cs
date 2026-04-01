@@ -126,6 +126,7 @@ public class InventorySystem : MonoBehaviour
                 if (slot.Amount == 0)
                 {
                     slot.Item = null;
+                    ClearQuickSlot(slot.SlotID);
                 }
 
                 if (remaining == 0)
