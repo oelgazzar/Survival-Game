@@ -8,6 +8,7 @@ public class InventoryItemData : ScriptableObject
     public ItemInfo Info;
     public InventoryItemType ItemType;
     public Sprite Sprite;
+    public Sprite HoverCursorIcon;
 }
 
 public enum InventoryItemType

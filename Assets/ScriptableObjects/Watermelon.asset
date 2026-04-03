@@ -19,6 +19,7 @@ MonoBehaviour:
     Functionality: Consume to increase feeding meter.
   ItemType: 1
   Sprite: {fileID: 21300000, guid: fb9e973fc1ba0084cb26cd64cbff8211, type: 3}
+  HoverCursorIcon: {fileID: 21300000, guid: f4c06ea4f58978e4cae64e0098e13ceb, type: 3}
   Effect:
     Status: {fileID: 11400000, guid: 07dad7ee9827e53498c2a31905a36dc5, type: 2}
     Modifier: 10

@@ -249,7 +249,7 @@ public class InventorySystem : MonoBehaviour
             inventorySlot.IsEquipped = !inventorySlot.IsEquipped;
 
             var equippable = inventorySlot.Item as EquippableInventoryItemData;
-            EquipSystem.Instance.ToggleEquipItem(equippable, inventorySlot.IsEquipped);
+            EquipmentManager.Instance.ToggleEquipItem(equippable, inventorySlot.IsEquipped);
 
             UnequipOtherSlots(inventorySlot);
             InventoryChanged?.Invoke(_inventorySlots);

@@ -1,47 +1,17 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Interactable : MonoBehaviour
 {
     [SerializeField] InventoryItemData _inventoryItemData;
 
-    Outline _outline;
-    public bool PlayerInRange;
-    public string Name => _inventoryItemData.Name;
+    public string Name => _inventoryItemData?.Name;
+    public Sprite HoverIcon => _inventoryItemData?.HoverCursorIcon;
 
-    private void Awake()
+    public void Interact()
     {
-        _outline = GetComponent<Outline>();
-        if ( _outline != null )
-            _outline.enabled = false;
-    }
-
-    private void Update()
-    {
-        if (GameManager.Instance.State == GameManager.GameState.Paused) return;
-
-        if (Mouse.current.leftButton.wasPressedThisFrame && PlayerInRange && InteractionManager.Instance.Target == this)
+        if (InventorySystem.Instance.TryAddItem(_inventoryItemData))
         {
-            if (InventorySystem.Instance.TryAddItem(_inventoryItemData))
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerInRange = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerInRange = false;
-        }
-    }
-
 }

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 23369352441393412}
   - component: {fileID: 4464467751417496891}
   - component: {fileID: 3857711202771962751}
-  - component: {fileID: -4539539802335762785}
   - component: {fileID: 2800295969244987393}
   - component: {fileID: 1229508459078084031}
   m_Layer: 0
@@ -137,24 +136,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50, y: 5, z: 50}
   m_Center: {x: 0.058700114, y: 0.07593876, z: 0.15196908}
---- !u!114 &-4539539802335762785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969192603740655825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Outline
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &2800295969244987393
 MonoBehaviour:
   m_ObjectHideFlags: 0

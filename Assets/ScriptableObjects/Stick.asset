@@ -19,3 +19,4 @@ MonoBehaviour:
     Functionality: Use for crafting Axe, Bow, etc...
   ItemType: 0
   Sprite: {fileID: 21300000, guid: 45f1afbc81ff26641854d21aca0f043c, type: 3}
+  HoverCursorIcon: {fileID: 21300000, guid: f4c06ea4f58978e4cae64e0098e13ceb, type: 3}

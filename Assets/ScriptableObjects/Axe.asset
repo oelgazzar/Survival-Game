@@ -19,3 +19,5 @@ MonoBehaviour:
     Functionality: Used to cut trees for wood.
   ItemType: 2
   Sprite: {fileID: -1045854658, guid: a40a0e54db92993428997e31e2f9c59e, type: 3}
+  HoverCursorIcon: {fileID: 0}
+  ToolPrefab: {fileID: 5794123621734457459, guid: 2049ec5359b80bf4dbb46def72e20fb7, type: 3}

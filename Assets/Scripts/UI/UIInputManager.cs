@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
-public class InputManager : MonoBehaviour
+public class UIInputManager : MonoBehaviour
 {
     [SerializeField] GameObject _inventoryScreen;
     [SerializeField] GameObject _craftingScreen;

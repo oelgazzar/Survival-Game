@@ -10,8 +10,9 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] float _raycastDistance = 10f;
     [SerializeField] float _raycastRadius = .1f;
     [SerializeField] Image _screenCenter;
-    [SerializeField] Sprite _DotImage;
-    [SerializeField] Sprite _HandImage;
+    [SerializeField] Sprite _defaultIcon;
+    [SerializeField] Vector2 _defaulIconSize = new (5, 5);
+    [SerializeField] Vector2 _altIconSize = new(30, 30);
 
     public static InteractionManager Instance;
 
@@ -37,33 +38,24 @@ public class InteractionManager : MonoBehaviour
         if (Physics.SphereCast(ray, _raycastRadius, out var hit, _raycastDistance))
         {
             var interactable = hit.collider.GetComponentInParent<Interactable>();
-            if (interactable != null && interactable.PlayerInRange)
+            if (interactable != null)
             {
                 _interactionInfoText.text = interactable.Name;
                 _interactionInfoText.gameObject.SetActive(true);
                 Target = interactable;
-                if (interactable.TryGetComponent<Pickable>(out var _))
-                {
-                    SetScreenCenterImage(_HandImage);
-                }
+                SetScreenCenterImage(interactable.HoverIcon);
                 return;
             }
         }
         _interactionInfoText.gameObject.SetActive(false);
         Target = null;
-        SetScreenCenterImage(_DotImage);
+        SetScreenCenterImage(_defaultIcon);
     }
 
     void SetScreenCenterImage(Sprite sprite)
     {
         _screenCenter.enabled = sprite != null;
         _screenCenter.sprite = sprite;
-
-        if (sprite == _DotImage)
-        {
-            _screenCenter.rectTransform.sizeDelta = Vector2.one * 5;
-        } else if (sprite == _HandImage) {
-            _screenCenter.rectTransform.sizeDelta = Vector2.one * 30;
-        }
+        _screenCenter.rectTransform.sizeDelta = sprite == _defaultIcon? _defaulIconSize : _altIconSize;
     }
 }
