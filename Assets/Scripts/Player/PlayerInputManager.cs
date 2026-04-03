@@ -20,11 +20,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-            if (_interactionManager.Target != null)
-            {
-                _interactionManager.Target.Interact();
-            } else
-            {
+            if (_interactionManager.Target == null || _interactionManager.Target.Interact() == false) { 
                 _equipmentManager.UseEquippedTool();
             }
         }

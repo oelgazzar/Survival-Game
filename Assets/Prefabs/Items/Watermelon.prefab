@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4145982771129873215}
   - component: {fileID: 6321108586716677}
   - component: {fileID: 3851756571348021675}
-  - component: {fileID: 537182120742262615}
   - component: {fileID: 8856829009496167696}
   m_Layer: 0
   m_Name: Watermelon
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523945327849883222}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 527.603, y: 0.3823664, z: 516.248}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -136,20 +135,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &537182120742262615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523945327849883222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d7a64822cbcaf4883a9c3389bcb3df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  _inventoryItemData: {fileID: 11400000, guid: 59a4b6ef8472b7649ba3af6caeb3f653, type: 2}
-  PlayerInRange: 0
 --- !u!114 &8856829009496167696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad741399980ab44799fd2582af5eaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
+  _name: 
+  _hoverCursorIcon: {fileID: 0}
+  ItemData: {fileID: 11400000, guid: 59a4b6ef8472b7649ba3af6caeb3f653, type: 2}

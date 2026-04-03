@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5117050610879575318}
   - component: {fileID: 523867202200812714}
   - component: {fileID: 4333662297224791281}
-  - component: {fileID: 2616201589544888371}
   - component: {fileID: 1986062231250835295}
   m_Layer: 0
   m_Name: Egg
@@ -30,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4137472739814596577}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 527.35706, y: 0.068, z: 517.20905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -136,20 +135,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: -0.000000022351742, y: 0.03878428, z: -0.000000029802322}
---- !u!114 &2616201589544888371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137472739814596577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d7a64822cbcaf4883a9c3389bcb3df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  _inventoryItemData: {fileID: 11400000, guid: d96496d356ceb1e429666ca24496da40, type: 2}
-  PlayerInRange: 0
 --- !u!114 &1986062231250835295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad741399980ab44799fd2582af5eaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
+  _name: 
+  _hoverCursorIcon: {fileID: 0}
+  ItemData: {fileID: 11400000, guid: d96496d356ceb1e429666ca24496da40, type: 2}

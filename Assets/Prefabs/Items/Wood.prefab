@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 23369352441393412}
   - component: {fileID: 4464467751417496891}
   - component: {fileID: 3857711202771962751}
-  - component: {fileID: 2800295969244987393}
   - component: {fileID: -5541967862038116158}
+  - component: {fileID: 1509514662756839090}
   m_Layer: 0
   m_Name: Wood
   m_TagString: Untagged
@@ -136,20 +136,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50, y: 5, z: 50}
   m_Center: {x: 0.058700114, y: 0, z: 0.15196908}
---- !u!114 &2800295969244987393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969192603740655825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d7a64822cbcaf4883a9c3389bcb3df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  _inventoryItemData: {fileID: 11400000, guid: 2aa6d411f1eab91468bf3bdbc97dea00, type: 2}
-  PlayerInRange: 0
 --- !u!114 &-5541967862038116158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +148,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad741399980ab44799fd2582af5eaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
+  _name: 
+  _hoverCursorIcon: {fileID: 0}
+  ItemData: {fileID: 11400000, guid: 2aa6d411f1eab91468bf3bdbc97dea00, type: 2}
+--- !u!54 &1509514662756839090
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969192603740655825}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

@@ -1,17 +1,25 @@
+using TMPro;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] InventoryItemData _inventoryItemData;
+    [SerializeField] protected string _name;
+    [SerializeField] protected Sprite _hoverCursorIcon;
 
-    public string Name => _inventoryItemData?.Name;
-    public Sprite HoverIcon => _inventoryItemData?.HoverCursorIcon;
-
-    public void Interact()
+    public virtual void Hover(bool value)
     {
-        if (InventorySystem.Instance.TryAddItem(_inventoryItemData))
+        if (value == true)
         {
-            Destroy(gameObject);
+            UIManager.Instance.UpdateInteractionInfoText(_name);
+            UIManager.Instance.UpdateScreenCenterIcon(
+                _hoverCursorIcon != null ?
+                _hoverCursorIcon : UIManager.Instance.DefaultScreenCenterIcon);
+        } else
+        {
+            UIManager.Instance.UpdateInteractionInfoText(null);
+            UIManager.Instance.UpdateScreenCenterIcon(UIManager.Instance.DefaultScreenCenterIcon);
         }
     }
+
+    public virtual bool Interact() { return false; }
 }

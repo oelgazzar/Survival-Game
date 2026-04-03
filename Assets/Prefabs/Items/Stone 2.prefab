@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7810364
+      value: 6.014
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.036857106
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.9260254
+      value: -2.506
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
       propertyPath: m_LocalRotation.w
@@ -84,9 +84,6 @@ PrefabInstance:
       addedObject: {fileID: 2234025902353611464}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7270683736600170755}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -7250068444084149975}
   m_SourcePrefab: {fileID: 100100000, guid: aa6beadd1e5bca944ac45160153c5d30, type: 3}
 --- !u!1 &610830551852683834 stripped
@@ -136,20 +133,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 50, y: 5, z: 50}
   m_Center: {x: 0.106294215, y: -0.0755038, z: 0.030014724}
---- !u!114 &7270683736600170755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 610830551852683834}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32d7a64822cbcaf4883a9c3389bcb3df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  _inventoryItemData: {fileID: 11400000, guid: 992f49524b07df941840ce83a0227362, type: 2}
-  PlayerInRange: 0
 --- !u!114 &-7250068444084149975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,3 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cad741399980ab44799fd2582af5eaf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pickable
+  _name: 
+  _hoverCursorIcon: {fileID: 0}
+  ItemData: {fileID: 11400000, guid: 992f49524b07df941840ce83a0227362, type: 2}

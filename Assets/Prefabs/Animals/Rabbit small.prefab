@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 617570297968355970}
   - component: {fileID: 3337239793724000138}
   - component: {fileID: 4604781563807415250}
-  - component: {fileID: -1408699823937277818}
+  - component: {fileID: 8910210230645963243}
   m_Layer: 0
   m_Name: Rabbit small
   m_TagString: Untagged
@@ -865,8 +865,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Rabbit
   _wanderAreaCenter: {x: 500, y: 0, z: 500}
-  _wanderAreaRadius: 100
---- !u!114 &-1408699823937277818
+  _wanderAreaRadius: 50
+--- !u!114 &8910210230645963243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -878,8 +878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32d7a64822cbcaf4883a9c3389bcb3df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  _inventoryItemData: {fileID: 0}
-  PlayerInRange: 0
+  _name: Rabbit
+  _hoverCursorIcon: {fileID: 0}
 --- !u!1 &1593323770353162
 GameObject:
   m_ObjectHideFlags: 0

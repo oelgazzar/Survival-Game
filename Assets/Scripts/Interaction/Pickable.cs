@@ -1,16 +1,20 @@
-using UnityEngine;
-
-public class Pickable : MonoBehaviour
+public class Pickable : Interactable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public InventoryItemData ItemData;
+
+    private void Start()
     {
-        
+        _name = ItemData.Name;
+        _hoverCursorIcon = ItemData.HoverCursorIcon;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool Interact()
     {
-        
+        if (InventorySystem.Instance.TryAddItem(ItemData))
+        {
+            Destroy(gameObject);
+        }
+
+        return true;
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class AxeTool : Tool
 {
@@ -13,6 +14,20 @@ public class AxeTool : Tool
         if (_animator != null)
         {
             _animator.SetTrigger("Swing");
+        }
+    }
+
+    // Animation Event
+    public void OnImpact()
+    {
+        var ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.SphereCast(ray, .2f, out var hit, 3, LayerMask.GetMask("Tree")))
+        {
+            var tree = hit.collider.GetComponentInParent<ChoppableTree>();
+            if (tree != null)
+            {
+                tree.DealDamage();
+            }
         }
     }
 }
