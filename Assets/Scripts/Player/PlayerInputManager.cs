@@ -18,6 +18,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.State == GameManager.GameState.Paused) return;
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (_interactionManager.Target == null || _interactionManager.Target.Interact() == false) { 
