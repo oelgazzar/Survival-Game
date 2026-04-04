@@ -12,6 +12,7 @@ public class Pickable : Interactable
     {
         if (InventorySystem.Instance.TryAddItem(ItemData))
         {
+            Hover(false);
             Destroy(gameObject);
         }
 

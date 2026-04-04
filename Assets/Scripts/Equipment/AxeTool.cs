@@ -26,7 +26,7 @@ public class AxeTool : Tool
             var tree = hit.collider.GetComponentInParent<ChoppableTree>();
             if (tree != null)
             {
-                tree.DealDamage();
+                tree.Hit();
             }
         }
     }

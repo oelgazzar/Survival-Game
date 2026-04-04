@@ -32,7 +32,8 @@ public class InventorySystem : MonoBehaviour
 
     private void Start()
     {
-        TryAddItem(_debugAxeItem);        
+        TryAddItem(_debugAxeItem);
+        UseItem(0);
     }
 
     void InitSlots()
