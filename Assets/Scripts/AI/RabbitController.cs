@@ -68,7 +68,7 @@ public class RabbitController : MonoBehaviour
         return _destination;
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(_destination, 10);

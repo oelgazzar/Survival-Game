@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class RecipeUI : MonoBehaviour
 {
-    [SerializeField] TMP_Text _toolNameText;
+    [SerializeField] TMP_Text _NameText;
     [SerializeField] Image _icon;
     [SerializeField] TMP_Text[] _ingredientTexts;
     [SerializeField] Button _craftButton;
@@ -27,7 +27,7 @@ public class RecipeUI : MonoBehaviour
     public void SetRecipe(CraftingRecipe recipe)
     {
         _recipe = recipe;
-        _toolNameText.text = _recipe.Result.Name;
+        _NameText.text = _recipe.Result.Name;
         _icon.sprite = _recipe.Result.Sprite;
 
     }

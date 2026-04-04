@@ -8,10 +8,14 @@ public class UIInputManager : MonoBehaviour
 {
     [SerializeField] GameObject _inventoryScreen;
     [SerializeField] GameObject _craftingScreen;
-    [SerializeField] GameObject _toolsScreen;
+    [SerializeField] GameObject _toolsScreen, _survivalScreen, _refineAndProcessScreen;
 
     AudioSource _audioSource;
     Dictionary<KeyControl, int> _keySlotMap;
+
+    bool _isInventoryOpen => _inventoryScreen.activeSelf;
+    bool _isCraftingScreensOpen => _craftingScreen.activeSelf || _toolsScreen.activeSelf || 
+        _survivalScreen.activeSelf || _refineAndProcessScreen.activeSelf;
 
     private void Awake()
     {
@@ -35,16 +39,16 @@ public class UIInputManager : MonoBehaviour
     {
         if (Keyboard.current.iKey.wasPressedThisFrame)
         {
-            ToggleInventory(!_inventoryScreen.activeSelf);
+            ToggleInventory(!_isInventoryOpen);
 
         }
         else if (Keyboard.current.cKey.wasPressedThisFrame)
         {
-            ToggleCraftingScreen(!_craftingScreen.activeSelf && !_toolsScreen.activeSelf);
-            ToggleInventory(_craftingScreen.activeSelf || _toolsScreen.activeSelf);
+            ToggleCraftingScreen(!_isCraftingScreensOpen);
+            ToggleInventory(_isCraftingScreensOpen);
         }
 
-        Pause(_inventoryScreen.activeSelf || _craftingScreen.activeSelf || _toolsScreen.activeSelf);
+        Pause(_isInventoryOpen || _isCraftingScreensOpen);
 
         CheckQuickSlotInputs();
     }
@@ -61,16 +65,18 @@ public class UIInputManager : MonoBehaviour
         }
     }
 
-    public void ToggleInventory(bool open)
+    public void ToggleInventory(bool value)
     {
-        _inventoryScreen.SetActive(open);
+        _inventoryScreen.SetActive(value);
         _audioSource.Play();
     }
 
-    public void ToggleCraftingScreen(bool open)
+    public void ToggleCraftingScreen(bool value)
     {
-        _craftingScreen.SetActive(open);
+        _craftingScreen.SetActive(value);
         _toolsScreen.SetActive(false);
+        _survivalScreen.SetActive(false);
+        _refineAndProcessScreen.SetActive(false);
         _audioSource.Play();
     }
 
