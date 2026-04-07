@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1529165734092937395}
   - component: {fileID: 5117050610879575318}
   - component: {fileID: 523867202200812714}
-  - component: {fileID: 4333662297224791281}
   - component: {fileID: 1986062231250835295}
   m_Layer: 0
   m_Name: Egg
@@ -113,27 +112,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.18118176, y: 0.25951716, z: 0.18049194}
-  m_Center: {x: -0.000000022351742, y: 0.03878428, z: -0.000000029802322}
---- !u!65 &4333662297224791281
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137472739814596577}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: -0.000000022351742, y: 0.03878428, z: -0.000000029802322}
 --- !u!114 &1986062231250835295
 MonoBehaviour:

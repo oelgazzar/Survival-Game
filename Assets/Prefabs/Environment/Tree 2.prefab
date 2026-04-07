@@ -292,7 +292,7 @@ MonoBehaviour:
   _hoverCursorIcon: {fileID: 0}
   _logsPrefab: {fileID: 8108873753649613852, guid: 9aa924913ed5ed549bf0359a20299b77, type: 3}
   _maxHealth: 100
-  _damage: 50
+  _damage: 30
   _chopSfx:
   - {fileID: 8300000, guid: abaea0692c172b7449a6df886bb021ac, type: 3}
   - {fileID: 8300000, guid: cf84a1f935e23a84bbc641116a5607ed, type: 3}

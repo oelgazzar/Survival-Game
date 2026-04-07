@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Cursor.lockState = CursorLockMode.Locked;
     }
+
 
     public enum GameState
     {

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class Pickable : Interactable
 {
     public InventoryItemData ItemData;
@@ -12,10 +14,11 @@ public class Pickable : Interactable
     {
         if (InventorySystem.Instance.TryAddItem(ItemData))
         {
-            Hover(false);
+            // Disable collider to prevent multiple interactions while the item is being picked up
+            GetComponent<Collider>().enabled = false;
+            gameObject.SetActive(false); // Hide the object immediately for better feedback
             Destroy(gameObject);
         }
-
         return true;
     }
 }
