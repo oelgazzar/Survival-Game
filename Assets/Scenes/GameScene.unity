@@ -9897,6 +9897,7 @@ MonoBehaviour:
   _capacity: 21
   _numQuickSlots: 7
   _debugAxeItem: {fileID: 11400000, guid: a8918cd33a967c948ac4c38bca4aa930, type: 2}
+  _itemDatabase: {fileID: 11400000, guid: c686c534ff2427c4b84267a9ec9b4dfc, type: 2}
 --- !u!4 &1855642811
 Transform:
   m_ObjectHideFlags: 0

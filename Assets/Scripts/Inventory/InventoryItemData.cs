@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/InventoryItems/InventoryItem")]
 public class InventoryItemData : ScriptableObject
 {
+    public string ItemID = Guid.NewGuid().ToString();
     public string Name;
     public ItemInfo Info;
     public InventoryItemType ItemType;

@@ -45,6 +45,17 @@ public class GameManager : MonoBehaviour
         // Example: PlayerPrefs.SetInt("PlayerLevel", currentLevel);
         // Example: PlayerPrefs.SetFloat("PlayerHealth", playerHealth);
         // Remember to call PlayerPrefs.Save() if you want to ensure the data is written to disk immediately
-        PlayerPrefs.Save();
+        SaveManager.Save();
+    }
+
+    [ContextMenu("Load Game")]
+    public void LoadGame()
+    {
+        // Implement load game logic here
+        // This should read the saved data and restore the player's stats, inventory, and current level
+        Debug.Log("Game loaded!");
+        // Example: int currentLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
+        // Example: float playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
+        SaveManager.Load();
     }
 }

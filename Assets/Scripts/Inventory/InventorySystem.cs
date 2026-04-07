@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
-public class InventorySystem : MonoBehaviour
+public class InventorySystem : MonoBehaviour, ISaveable
 {
     [SerializeField] int _capacity = 21;
     [SerializeField] int _numQuickSlots = 7;
     [SerializeField] InventoryItemData _debugAxeItem;
+    [SerializeField] ItemDatabase _itemDatabase;
 
     public static InventorySystem Instance;
 
@@ -16,6 +18,8 @@ public class InventorySystem : MonoBehaviour
 
     readonly List<InventorySlot> _inventorySlots = new();
     InventorySlot[] _quickSlots;
+
+    public string SaveID => "inventory";
 
     private void Awake()
     {
@@ -316,5 +320,56 @@ public class InventorySystem : MonoBehaviour
     private void OnDisable()
     {
         InventoryChanged += SyncQuickSlot;        
+    }
+
+    [ContextMenu("Flush Inventory")]
+    public string Save()
+    {
+        var itemIDs = new List<string>();
+        foreach (var slot in _inventorySlots)
+        {
+            if (slot.Item != null)
+            {
+                itemIDs.Add(slot.Item.ItemID);
+            }
+            else
+            {
+                itemIDs.Add(null);
+            }
+        }
+
+        var json = JsonUtility.ToJson(new SerializationWrapper<string>(itemIDs));
+
+        return json;
+    }
+
+    public void Load(string state)
+    {
+        var itemIDs = JsonUtility.FromJson<SerializationWrapper<string>>(state).Data;
+
+        for (var i = 0; i < itemIDs.Count; i++)
+        {
+            var itemID = itemIDs[i];
+            if (itemID.NullIfEmpty() != null)
+            {
+                var itemData = _itemDatabase.GetItemData(itemID);
+                if (itemData != null)
+                {
+                    _inventorySlots[i].Item = itemData;
+                    _inventorySlots[i].Amount = 1;
+                }
+                else
+                {
+                    Debug.LogError($"Item with ID {itemID} not found in database");
+                }
+            }
+            else
+            {
+                _inventorySlots[i].Item = null;
+                _inventorySlots[i].Amount = 0;
+            }
+        }
+
+        InventoryChanged?.Invoke(_inventorySlots);
     }
 }

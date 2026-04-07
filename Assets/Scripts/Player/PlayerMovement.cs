@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ISaveable
 {
     [SerializeField] CharacterController _characterController;
     [SerializeField] float _moveSpeed;
@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     float velocityY;
 
     PlayerInputManager _inputManager;
+
+    public string SaveID { get => "player"; }
 
     private void Awake()
     {
@@ -38,5 +40,20 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y = velocityY;
         _characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void Load(string state)
+    {
+        var playerData = JsonUtility.FromJson<SaveablePlayerData>(state);
+        transform.SetPositionAndRotation(playerData.Position, playerData.Rotation);
+    }
+
+    public string Save()
+    {
+        return JsonUtility.ToJson(new SaveablePlayerData()
+        {
+            Position = transform.position,
+            Rotation = transform.rotation
+        });
     }
 }

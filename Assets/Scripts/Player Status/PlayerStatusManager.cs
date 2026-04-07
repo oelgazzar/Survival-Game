@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerStatusManager : MonoBehaviour
+public class PlayerStatusManager : MonoBehaviour, ISaveable
 {
     [SerializeField] PlayerStatusData[] _allStatusData;
     [SerializeField] int _debugStatusIndex;
@@ -13,6 +13,8 @@ public class PlayerStatusManager : MonoBehaviour
     public static event Action<PlayerStatus> StatusChanged;
 
     readonly Dictionary<PlayerStatusData, PlayerStatus> _playerStatusMap = new();
+
+    public string SaveID => "status";
 
     private void Awake()
     {
@@ -95,5 +97,37 @@ public class PlayerStatusManager : MonoBehaviour
         var status = consumable.Effect.Status;
         ModifyPlayerStatus(status, consumable.Effect.Modifier);
         return true; // later return false if health full
+    }
+
+    public string Save()
+    {
+        var saveData = new List<SaveableStatusData>();
+        foreach (var kvp in _playerStatusMap)
+        {
+            var statusData = kvp.Key;
+            var playerStatus = kvp.Value;
+            saveData.Add(new SaveableStatusData
+            {
+                StatusName = statusData.Name,
+                CurrentValue = playerStatus.CurrentValue
+            });
+        }
+        return JsonUtility.ToJson(new SerializationWrapper<SaveableStatusData>(saveData));
+    }
+
+    public void Load(string state)
+    {
+        var wrapper = new SerializationWrapper<SaveableStatusData>(new List<SaveableStatusData>());
+        JsonUtility.FromJsonOverwrite(state, wrapper);
+        wrapper.Data.ForEach(data =>
+        {
+            var statusData = Array.Find(_allStatusData, s => s.Name == data.StatusName);
+            if (statusData != null)
+            {
+                var playerStatus = _playerStatusMap[statusData];
+                playerStatus.UpdateCurrentValue(data.CurrentValue);
+                StatusChanged?.Invoke(playerStatus);
+            }
+        });
     }
 }

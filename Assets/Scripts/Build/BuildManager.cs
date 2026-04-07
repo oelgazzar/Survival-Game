@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using System;
 
-public class BuildManager : MonoBehaviour
+public class BuildManager : MonoBehaviour, ISaveable
 {
     [SerializeField] BuildStructure[] _structurePrefabs;
     [SerializeField] BuildGhost[] _ghostPrefabs;
@@ -12,6 +14,10 @@ public class BuildManager : MonoBehaviour
     BuildGhost _currentGhostPrefab;
 
     int _currentStructureIndex = 0;
+
+    List<BuildData> _placedStructures = new List<BuildData>();
+
+    public string SaveID => "build";
 
     private void Start()
     {
@@ -84,6 +90,35 @@ public class BuildManager : MonoBehaviour
     {
         var newStructure = Instantiate(_currentStructurePrefab, _currentGhost.transform.position, _currentGhost.transform.rotation);
         _currentGhost.Place(newStructure);
+        _placedStructures.Add(new BuildData
+        {
+            StructureIndex = _currentStructureIndex,
+            Position = newStructure.transform.position,
+            Rotation = newStructure.transform.rotation
+        });
     }
 
+    public string Save()
+    {
+        return JsonUtility.ToJson(new SerializationWrapper<BuildData>(_placedStructures));
+    }
+
+    public void Load(string state)
+    {
+        _placedStructures = JsonUtility.FromJson<SerializationWrapper<BuildData>>(state).Data;
+
+        foreach (var buildData in _placedStructures)
+        {
+            var structurePrefab = _structurePrefabs[buildData.StructureIndex];
+            Instantiate(structurePrefab, buildData.Position, buildData.Rotation);
+        }
+    }
+}
+
+[Serializable]
+public class BuildData
+{
+    public int StructureIndex;
+    public Vector3 Position;
+    public Quaternion Rotation;
 }
