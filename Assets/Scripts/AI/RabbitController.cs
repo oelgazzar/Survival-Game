@@ -63,8 +63,14 @@ public class RabbitController : MonoBehaviour
     {
         var randomDirection = Random.insideUnitSphere * _wanderAreaRadius;
         var randomPosition =  _wanderAreaCenter + new Vector3(randomDirection.x, transform.position.y, randomDirection.z);
-        NavMesh.SamplePosition(randomPosition, out var hit, 1f, NavMesh.AllAreas);
-        _destination = hit.position;
+
+        if (NavMesh.SamplePosition(randomPosition, out var hit, 1f, NavMesh.AllAreas))
+        {
+            _destination = hit.position;
+        } else
+        {
+            _destination = transform.position; // Fallback to current position if no valid point found
+        }
         return _destination;
     }
 
