@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image _screenCenterIcon;
     [SerializeField] Vector2 _defaulIconSize = new(5, 5);
     [SerializeField] Vector2 _altIconSize = new(30, 30);
+    [SerializeField] GameObject _pauseMenu;
 
     public Sprite DefaultScreenCenterIcon;
 
@@ -35,5 +36,10 @@ public class UIManager : MonoBehaviour
             _screenCenterIcon.sprite = hoverCursorIcon;
 
         _screenCenterIcon.rectTransform.sizeDelta = hoverCursorIcon == DefaultScreenCenterIcon ? _defaulIconSize : _altIconSize;
+    }
+
+    public void TogglePauseMenu(bool value)
+    {
+        _pauseMenu.SetActive(value);
     }
 }

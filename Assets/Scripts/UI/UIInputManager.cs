@@ -40,17 +40,34 @@ public class UIInputManager : MonoBehaviour
         if (Keyboard.current.iKey.wasPressedThisFrame)
         {
             ToggleInventory(!_isInventoryOpen);
+            Pause(_isInventoryOpen || _isCraftingScreensOpen);
 
         }
         else if (Keyboard.current.cKey.wasPressedThisFrame)
         {
             ToggleCraftingScreen(!_isCraftingScreensOpen);
             ToggleInventory(_isCraftingScreensOpen);
+            Pause(_isInventoryOpen || _isCraftingScreensOpen);
         }
 
-        Pause(_isInventoryOpen || _isCraftingScreensOpen);
 
         CheckQuickSlotInputs();
+
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            if (GameManager.Instance.State == GameManager.GameState.Paused)
+            {
+                ToggleInventory(false);
+                ToggleCraftingScreen(false);
+                UIManager.Instance.TogglePauseMenu(false);
+                Pause(false);
+            }
+            else
+            {
+                Pause(true);
+                UIManager.Instance.TogglePauseMenu(true);
+            }
+        }
     }
 
     private void CheckQuickSlotInputs()

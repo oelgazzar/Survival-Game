@@ -21,6 +21,10 @@ public class BuildManager : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.State == GameManager.GameState.Paused)
+            return;
+
+
         if (Keyboard.current.bKey.wasPressedThisFrame)
         {
             ToggleBuildMode();            
