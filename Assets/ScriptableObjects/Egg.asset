@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455432b87aa07064f9559eb0077e5755, type: 3}
   m_Name: Egg
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableInventoryItemData
+  ItemID: 0d766856-fcfd-4c34-8629-04ef2e44ae51
   Name: Egg
   Info:
     Name: Egg

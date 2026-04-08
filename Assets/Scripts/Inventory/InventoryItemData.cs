@@ -4,12 +4,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "InventoryItem", menuName = "Scriptable Objects/InventoryItems/InventoryItem")]
 public class InventoryItemData : ScriptableObject
 {
-    public string ItemID = Guid.NewGuid().ToString();
+    public string ItemID;
     public string Name;
     public ItemInfo Info;
     public InventoryItemType ItemType;
     public Sprite Sprite;
     public Sprite HoverCursorIcon;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        if (string.IsNullOrEmpty(ItemID))
+        {
+            ItemID = Guid.NewGuid().ToString();
+        }
+        UnityEditor.EditorUtility.SetDirty(this);
+    }
+#endif
 }
 
 public enum InventoryItemType

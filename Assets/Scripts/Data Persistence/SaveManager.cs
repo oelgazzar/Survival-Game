@@ -23,14 +23,14 @@ public class SaveManager
         }
 
         var json = JsonUtility.ToJson(new SerializationWrapper<SaveableEntity>(data));
-        var path = Application.persistentDataPath + "/save_01.json";
+        var path = Application.persistentDataPath + $"/save_slot_{GameSession.SaveSlot}.json";
 
         File.WriteAllText(path, json);
     }
 
-    public static void Load()
+    public static void Load(int saveSlot)
     {
-        var path = Application.persistentDataPath + "/save_01.json";
+        var path = Application.persistentDataPath + $"/save_slot_{saveSlot}.json";
         if (!File.Exists(path))
         {
             Debug.LogWarning("No save file found at " + path);

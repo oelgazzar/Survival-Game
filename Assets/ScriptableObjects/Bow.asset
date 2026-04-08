@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d12d866e08c82448ee48f3daeace46, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
+  ItemID: c87a6b0f-476f-4d44-96b3-d128dd1f9a58
   Name: Bow
+  Info:
+    Name: 
+    Description: 
+    Functionality: 
   ItemType: 2
   Sprite: {fileID: 21300000, guid: 27d628968872ec1479343797014c4099, type: 3}
+  HoverCursorIcon: {fileID: 0}

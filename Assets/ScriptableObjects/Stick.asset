@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d12d866e08c82448ee48f3daeace46, type: 3}
   m_Name: Stick
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
+  ItemID: ccbe7b4a-bef4-464a-b5f4-e6e010b76c6a
   Name: Stick
   Info:
     Name: Stick

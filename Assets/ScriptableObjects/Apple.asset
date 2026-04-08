@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455432b87aa07064f9559eb0077e5755, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableInventoryItemData
+  ItemID: bb49646a-6642-4895-abb8-f456abddbac7
   Name: Apple
   Info:
     Name: Apple

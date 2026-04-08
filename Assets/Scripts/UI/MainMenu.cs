@@ -8,6 +8,13 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void LoadGame()
+    {
+        GameSession.IsLoadingGame = true;
+        GameSession.SaveSlot = 0;
+        SceneManager.LoadScene("GameScene");
+    }
+
     public void ExitGame()
     {
         Application.Quit();

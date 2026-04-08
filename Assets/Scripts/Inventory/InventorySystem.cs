@@ -32,12 +32,17 @@ public class InventorySystem : MonoBehaviour, ISaveable
         Instance = this;
         InitSlots();
 
+        if (HasItem(_debugAxeItem, 1) == false)
+        {
+            Debug.Log("Adding debug axe to inventory");
+            TryAddItem(_debugAxeItem);
+            AddItemToQuickSlot(0, 0);
+        }
     }
 
     private void Start()
     {
-        TryAddItem(_debugAxeItem);
-        AddItemToQuickSlot(0, 0);
+        InventoryChanged?.Invoke(_inventorySlots);
     }
 
     void InitSlots()

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d12d866e08c82448ee48f3daeace46, type: 3}
   m_Name: Plank
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
+  ItemID: 3c3afd3a-6efa-45ff-8d80-2119c1f1cb47
   Name: Plank
   Info:
     Name: Plank

@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         State = GameState.Playing;
+
+        if (GameSession.IsLoadingGame)
+        {
+            LoadGame();
+            GameSession.IsLoadingGame = false;
+        }
     }
 
     public void Pause(bool value)
@@ -39,23 +45,13 @@ public class GameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        // Implement save game logic here
-        // This could involve saving player stats, inventory, and current level to a file or PlayerPrefs
         Debug.Log("Game saved!");
-        // Example: PlayerPrefs.SetInt("PlayerLevel", currentLevel);
-        // Example: PlayerPrefs.SetFloat("PlayerHealth", playerHealth);
-        // Remember to call PlayerPrefs.Save() if you want to ensure the data is written to disk immediately
         SaveManager.Save();
     }
 
-    [ContextMenu("Load Game")]
     public void LoadGame()
     {
-        // Implement load game logic here
-        // This should read the saved data and restore the player's stats, inventory, and current level
         Debug.Log("Game loaded!");
-        // Example: int currentLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        // Example: float playerHealth = PlayerPrefs.GetFloat("PlayerHealth", 100f);
-        SaveManager.Load();
+        SaveManager.Load(GameSession.SaveSlot);
     }
 }

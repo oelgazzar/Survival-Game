@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 455432b87aa07064f9559eb0077e5755, type: 3}
   m_Name: Watermelon
   m_EditorClassIdentifier: Assembly-CSharp::ConsumableInventoryItemData
+  ItemID: 53c2245c-fb34-4752-bc82-9e3ac5d26ef1
   Name: Watermelon
   Info:
     Name: Watermelon
