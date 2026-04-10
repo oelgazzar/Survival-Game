@@ -746,7 +746,7 @@ MonoBehaviour:
     m_Bits: 384
   _obstacleLayerMask:
     serializedVersion: 2
-    m_Bits: 640
+    m_Bits: 1664
   _validMaterial: {fileID: 2100000, guid: 508f87c003e293f439d70299792e6a8d, type: 2}
   _invalidMaterial: {fileID: 2100000, guid: 93e12d56fcd625f4a8dd334b880e36a2, type: 2}
   _snapRadius: 2

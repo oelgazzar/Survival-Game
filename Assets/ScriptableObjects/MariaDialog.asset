@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ee15af2b9d0f78468fa9ad34f7d025b, type: 3}
+  m_Name: MariaDialog
+  m_EditorClassIdentifier: Assembly-CSharp::DialogData
+  CharacterName: Maria
+  CharacterPortrait: {fileID: 21300000, guid: c78fe1058f05f734690aac584708f716, type: 3}
+  Nodes:
+  - ID: start
+    Text: You look new around here. Supplies are hard to find lately.
+    Choices:
+    - ChoiceText: I want to trade
+      NextNodeID: trade
+    - ChoiceText: Any work available?
+      NextNodeID: quest
+    - ChoiceText: Just passing by
+      NextNodeID: exit
+    Action: 
+  - ID: trade
+    Text: Good. I have tools and food left.
+    Choices: []
+    Action: OpenShop
+  - ID: quest
+    Text: I lost a supply crate near the old tower.
+    Choices:
+    - ChoiceText: I'll find it
+      NextNodeID: accept
+    - ChoiceText: Sounds dangerous
+      NextNodeID: decline
+    Action: 
+  - ID: accept
+    Text: Thanks. Come back when you find it.
+    Choices: []
+    Action: StartQuest FindSupplyCrate
+  - ID: decline
+    Text: Suit yourself.
+    Choices: []
+    Action: 
+  - ID: exit
+    Text: Stay safe out there.
+    Choices: []
+    Action: 

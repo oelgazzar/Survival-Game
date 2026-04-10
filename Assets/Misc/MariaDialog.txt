@@ -1,0 +1,26 @@
+NPC: Maria
+
+[start]
+You look new around here. Supplies are hard to find lately.
+-> trade : I want to trade
+-> quest : Any work available?
+-> exit : Just passing by
+
+[trade]
+Good. I have tools and food left.
+ACTION: OpenShop
+
+[quest]
+I lost a supply crate near the old tower.
+-> accept : I'll find it
+-> decline : Sounds dangerous
+
+[accept]
+Thanks. Come back when you find it.
+ACTION: StartQuest FindSupplyCrate
+
+[decline]
+Suit yourself.
+
+[exit]
+Stay safe out there.

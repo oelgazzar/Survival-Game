@@ -31,10 +31,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Pause(bool value)
+    public void Pause(bool value, float timeScaleOnPause = 0)
     {
         State = value? GameState.Paused : GameState.Playing;
-        Time.timeScale = value ? 0 : 1; 
+        Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+        Time.timeScale = value ? timeScaleOnPause : 1; 
     }
 
     public void ReturnToMainMenu()

@@ -75,7 +75,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1015
+    m_Bits: 2039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -383,7 +383,7 @@ MonoBehaviour:
   _raycastRadius: 0.2
   _raycastLayerMask:
     serializedVersion: 2
-    m_Bits: 119
+    m_Bits: 1143
   Target: {fileID: 0}
 --- !u!114 &1015372238270921815
 MonoBehaviour:
