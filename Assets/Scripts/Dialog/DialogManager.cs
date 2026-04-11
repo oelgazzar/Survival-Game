@@ -1,4 +1,4 @@
-using System;
+using Ink.Runtime;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,71 +6,106 @@ using UnityEngine.UI;
 
 public class DialogManager : MonoBehaviour
 {
+    [Header("UI References")]
     [SerializeField] GameObject _dialogUI;
     [SerializeField] Image _characterPortraitContainer;
     [SerializeField] TMP_Text _characterNameText;
     [SerializeField] TMP_Text _dialogText;
     [SerializeField] Transform _dialogChoicesContainer;
     [SerializeField] Button _dialogChoiceButtonPrefab;
-    [SerializeField] DialogData _testDialogData;
     [SerializeField] Button _closeDialogButton;
 
     public static DialogManager Instance { get; private set; }
 
-    readonly Dictionary<string, DialogNode> _dialogNodeMap = new();
+    readonly Dictionary<string, DialogState> _dialogStateMap = new();
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-
+        
         _closeDialogButton.onClick.AddListener(EndDialog);
-
-    }
-
-    private void EndDialog()
-    {
-        _dialogUI.SetActive(false);
-        GameManager.Instance.Pause(false);
     }
 
     public void StartDialog(DialogData dialogData)
     {
-        foreach (var node in dialogData.Nodes)
+        if (_dialogStateMap.TryGetValue(dialogData.CharacterName, out var dialogState) == false)
         {
-            _dialogNodeMap[node.ID] = node;
+            dialogState = new DialogState
+            {
+                Story = new Story(dialogData.DialogTextAsset.text),
+                IsFirstTime = true
+            };
+            _dialogStateMap[dialogData.CharacterName] = dialogState;
+
         }
 
+        var story = dialogState.Story;
+        var questName = "";
+        foreach (var tag in story.globalTags)
+        {
+            if (tag.StartsWith("quest:"))
+            {
+                questName = tag["quest:".Length..].Trim();
+                break;
+            }
+        }
+        story.variablesState["questState"] = QuestManager.Instance.GetQuestState(questName).ToString();
+        story.variablesState["firstTime"] = dialogState.IsFirstTime;
+        dialogState.IsFirstTime = false;
+        story.ChoosePathString("entry");
+        
+        ShowDialogPanel(dialogData);
+
+        ResumeDialog(story);
+    }
+
+    public void ShowDialogPanel(DialogData dialogData)
+    {
         GameManager.Instance.Pause(true, 1);
 
         _dialogUI.SetActive(true);
         _characterNameText.text = dialogData.CharacterName;
         _characterPortraitContainer.sprite = dialogData.CharacterPortrait;
-        
-        var startNode = _dialogNodeMap["start"];
-        DisplayDialogNode(startNode);
     }
 
-    private void DisplayDialogNode(DialogNode startNode)
+    private void ResumeDialog(Story story)
     {
-        _dialogText.text = startNode.Text;
-
-        ClearOldChoices();
-
-        foreach (var choice in startNode.Choices)
+        if (story.canContinue)
         {
-            var choiceButton = Instantiate(_dialogChoiceButtonPrefab, _dialogChoicesContainer);
-            choiceButton.GetComponentInChildren<TMP_Text>().text = choice.ChoiceText;
-            var nextNode = _dialogNodeMap[choice.NextNodeID];
-            choiceButton.onClick.AddListener(() => DisplayDialogNode(nextNode));
+            story.Continue();
+            _dialogText.text = story.currentText;
+
+            foreach (var tag in story.currentTags)
+            {
+                if (tag.StartsWith("event:"))
+                {
+                    var eventName = tag.Split(":")[1].Trim();
+                    GameEvents.Instance.RaiseDialogEvent(eventName);
+                }
+            }
+
+            ClearOldChoiceButtons();
+            for (int i = 0; i < story.currentChoices.Count; i++)
+            {
+                var choiceButton = Instantiate(_dialogChoiceButtonPrefab, _dialogChoicesContainer);
+                choiceButton.GetComponentInChildren<TMP_Text>().text = story.currentChoices[i].text;
+                int choiceIndex = i; // Capture the current index for the lambda
+                choiceButton.onClick.AddListener(() => SelectChoice(story, choiceIndex));
+            }
+        }
+        
+        if (story.canContinue == false && story.currentChoices.Count == 0)
+        {
+            EndDialog();
         }
     }
 
-    private void ClearOldChoices()
+    private void ClearOldChoiceButtons()
     {
         foreach (Transform child in _dialogChoicesContainer)
         {
@@ -78,9 +113,15 @@ public class DialogManager : MonoBehaviour
         }
     }
 
-    [ContextMenu("Test Dialog")]
-    void TestDialog()
+    void SelectChoice(Story story, int choiceIndex)
     {
-        StartDialog(_testDialogData);
+        story.ChooseChoiceIndex(choiceIndex);
+        ResumeDialog(story);
+    }
+
+    private void EndDialog()
+    {
+        _dialogUI.SetActive(false);
+        GameManager.Instance.Pause(false);
     }
 }

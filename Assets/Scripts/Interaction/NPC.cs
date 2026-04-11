@@ -3,14 +3,16 @@ using UnityEngine;
 public class NPC : Interactable
 {
     [SerializeField] DialogData _dialogData;
-
+    
     Animator _animator;
 
     bool _isEyeFollowingPlayer;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
+
     public override void Hover(bool value)
     {
         UIManager.Instance.UpdateInteractionInfoText(value ? "Talk" : "");
